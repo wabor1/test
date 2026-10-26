@@ -12,4 +12,4 @@ if exist "%TARGET%" (
     echo Download failed.
 )
 
-pause   
+exit   
